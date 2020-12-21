@@ -1,0 +1,38 @@
+@import "~bootstrap/scss/bootstrap";
+
+.directory {
+    height: 100%;
+    max-width: 1450px;
+    margin: 0 auto;
+}
+
+.bg {
+    position: relative;
+    height: 600px;
+    background-position: 'center';
+    background-size: 'cover';
+    background-repeat: 'no-repeat';
+}
+
+.item {
+    position: relative;
+    width: 50%;
+    float: left;
+    height: 100%;
+    text-align: center;
+    }
+
+
+.item p{
+ background-color: white;
+ text-decoration: none;
+ color: #363636;
+ position: absolute;
+ top: 50%; left: 50%;
+ font-size: 2rem;
+ transform: translate(-50%,-50%);
+ font-weight: 400;
+ line-height: 1;
+ text-transform: uppercase;
+ padding: 8px 10px;
+}

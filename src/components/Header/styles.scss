@@ -1,0 +1,56 @@
+.header {
+ height: 7.0rem;
+ max-width: 1450px;
+ width: 100%;
+ border-bottom: solid #CA9E7B 1px;
+ margin: 0 auto;
+}
+
+.wrap {
+    position: relative;
+    height: 100%;
+    max-width: 1450px;
+    margin: 0 auto;
+}
+
+.logo {
+    width: 6.0rem;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.callToActions {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    ul, li{
+        display: inline-block;
+        margin: 0;
+        padding: 14px;
+    }
+
+    li {
+        list-style-type: none;
+
+        a {
+            font-size: 1.8rem;
+            line-height: 1;
+            color: #333333;
+            text-decoration: none;
+        }
+    }
+}
+
+img {
+    display: block;
+    width: 100%;
+    margin: 0;
+}
