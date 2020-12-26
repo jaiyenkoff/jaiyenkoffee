@@ -3,7 +3,7 @@ import './styles.scss';
 import Buttons from './../forms/Button'
 import { signInWithFacebook, signInWithGoogle, auth } from './../../firebase/utils'
 
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import FormInput from './../forms/FormInput';
 import Button from './../forms/Button';
 import AuthWrapper from './../AuthWrapper';
@@ -24,7 +24,7 @@ const handleSubmit = async e => {
     try {
         await auth.signInWithEmailAndPassword(email, password);
         resetForm();
-
+        props.history.push('/');
     } catch(err) {
         // console.log(err)
     };
@@ -78,4 +78,4 @@ const handleSubmit = async e => {
     );
 }
 
-export default SignIn;
+export default withRouter(SignIn);

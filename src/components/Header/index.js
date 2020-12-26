@@ -23,6 +23,11 @@ const Header = props => {
                     PRODUCT
                  </Link>
               </li>   
+              <li>
+                 <Link to="/dashboard">
+                    MY ACCOUNT
+                 </Link>
+              </li>  
         <li>
         <span onClick={() => auth.signOut()}>
         LOGOUT
@@ -36,7 +41,7 @@ const Header = props => {
                  <Link to="/product">
                     PRODUCT
                  </Link>
-              </li>   
+              </li>    
               <li>
                  <Link to="/registration">
                     REGISTER
