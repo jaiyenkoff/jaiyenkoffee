@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { auth, handleUserProfile } from './firebase/utils';
@@ -17,13 +17,13 @@ import Recovery from './pages/Recovery'
 import './default.scss';
 
 
-class App extends Component {
-  authListener = null;
+const App = props => {
+  const { setCurrentUser, currentUser } = props;
 
-  componentDidMount() {
-    const { setCurrentUser } = this.props
+  
+  useEffect(() => {
 
-    this.authListener = auth.onAuthStateChanged(async userAuth => {
+    const authListener = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await handleUserProfile(userAuth);
         userRef.onSnapshot(snapshot => {
@@ -33,17 +33,13 @@ class App extends Component {
           });
         })
       }
-
-          setCurrentUser(userAuth);
+      setCurrentUser(userAuth);
     });
-  }
-
-  componentWillUnmount() {
-    this.authListener();
-  }
-
-  render() {
-    const { currentUser } = this.props;
+    
+        return () => {
+          authListener(); 
+        };
+  }, [count]); 
     
 
     return (
@@ -74,7 +70,6 @@ class App extends Component {
       </div>
     );
   }
-}
 
 const mapStateToProps = ({ user }) => ({
   currentUser: user.currentUser
