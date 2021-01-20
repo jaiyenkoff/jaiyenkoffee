@@ -1,24 +1,34 @@
 /* eslint-disable */
 
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { auth, handleUserProfile } from './firebase/utils';
-import { setCurrentUser } from './redux/User/user.actions';
+import { useDispatch } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
+import { checkUserSession } from './redux/User/user.actions';
+
+// components
+import AdminToolbar from './components/AdminToolbar'; 
+
+
 
 // hoc
 import WithAuth from './hoc/withAuth';
+import WithAdminAuth from './hoc/withAdminAuth';
 
 
 // layouts
-import MainLayout from './layouts/MainLayout'
+import HomepageLayout from './layouts/HomepageLayout';
+import MainLayout from './layouts/MainLayout';
+import AdminLayout from './layouts/AdminLayout';
+import DashboardLayout from './layouts/DashboardLayout';
 
 // pages 
 import Homepage from './pages/Homepage';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
-import Recovery from './pages/Recovery'
-import Dashboard from './pages/Dashboard'
+import Recovery from './pages/Recovery';
+import Dashboard from './pages/Dashboard';
+import Admin from './pages/Admin';
+import Search from './pages/Search'
 import './default.scss';
 
 
@@ -26,33 +36,23 @@ const App = props => {
   const dispatch = useDispatch();
 
   
-  useEffect(() => {
-
-    const authListener = auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = await handleUserProfile(userAuth);
-        userRef.onSnapshot(snapshot => {
-          dispatch(setCurrentUser({
-              id: snapshot.id,
-              ...snapshot.data()
-          }));
-        })
-      }
-      dispatch(setCurrentUser(userAuth));
-    });
-    
-        return () => {
-          authListener(); 
-        };
+ useEffect(() => {
+  dispatch(checkUserSession());
   }, []); 
     
 
     return (
       <div className="App">
+        <AdminToolbar />
           <Switch>
         <Route exact path="/" render={() => (
-          <MainLayout>
+          <HomepageLayout>
           <Homepage />
+          </HomepageLayout>
+        )} />
+        <Route path="/search" render={() => (
+          <MainLayout>
+            <Search /> 
           </MainLayout>
         )} />
         <Route path="/registration" render={() =>   (
@@ -73,10 +73,17 @@ const App = props => {
         )} />
         <Route path='/dashboard' render ={() => (
           <WithAuth>
-          <MainLayout>
+          <DashboardLayout>
             <Dashboard />
-          </MainLayout>
+          </DashboardLayout>
           </WithAuth>
+        )} />
+       <Route path="/admin" render={() => (
+          <WithAdminAuth>
+            <AdminLayout>
+              <Admin />
+            </AdminLayout>
+          </WithAdminAuth>
         )} />
         </Switch>
       </div>

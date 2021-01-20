@@ -2,55 +2,23 @@
     height: calc(100% - 6.5rem - 5.8rem);
     max-width: 1450px;
 margin: 0 auto;
-}
-
-.banner{
-position: relative;
-height: 1000px;
-background-position: 'top center';
-background-size: 'cover';
-background-repeat: 'no-repeat';
-background: url('./../../assets/header-01.jpg');
-}
-
-.bannertxt-container {
-    position: relative;
-    height: 500px;
-    background-attachment: fixed;
-    background-position: 'center';
-    background-size: 'cover';
-    background-repeat: 'no-repeat';
-    background: url('./../../assets/directory-menu.jpg');
-
-    &::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    background: rgba(0,0,0,0.3);
-    z-index: 1;
-    height: 100%;
-    width: 100%;
-    }
-}
-
-.bannertxt {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    font-family: 'Pacifico', cursive;
-    font-size: 8rem;
-    text-align: center;
-    color: white;
-    white-space: nowrap;
-    overflow: hidden;
-    text-shadow: 2px 2px #000000;
-    border-top: solid 3px white;
-    border-bottom: solid 3px white;
-    padding: 25px 0;
-    z-index: 2;
-}
-
 .welcometxt {
-text-align: center;
-font-size: 2rem;
+    text-align: center;
+    font-size: 6rem;
+    font-weight: 700;
+    font-style: italic;
+    color: #DFCDB1;
+    margin-top: 50px;
 }
+
+.story {
+    margin-top: 50px;
+    text-align: center;
+h4,p {
+    text-align: left;
+    margin: 5px;
+}
+}
+
+}
+
