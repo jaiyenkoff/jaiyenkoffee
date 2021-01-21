@@ -1,13 +1,9 @@
 import React from 'react';
-import LandingPage from './../../components/LandingPage';
 import './styles.scss';
 
 const Homepage = props => {
     return (
      <div className="homepage">
-     <div>
-         <LandingPage />
-     </div>
      <div>
         <h2 className="welcometxt">Welcome to Jaiyen Koffee</h2>
     </div>

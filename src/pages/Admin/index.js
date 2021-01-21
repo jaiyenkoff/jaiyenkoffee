@@ -19,10 +19,13 @@ const Admin = props => {
   const { products } = useSelector(mapState);
   const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
-  const [productCategory, setProductCategory] = useState('bottle');
+  const [productCategory, setProductCategory] = useState('togo');
   const [productName, setProductName] = useState('');
   const [productThumbnail, setProductThumbnail] = useState('');
   const [productPrice, setProductPrice] = useState(0);
+  const [productTasteNote, setProductTasteNote] = useState('');
+  const [productOrigin, setProductOrigin] = useState('');
+  const [productStock, setProductStock] = useState(0);
 
   useEffect(() => {
     dispatch(
@@ -39,10 +42,13 @@ const Admin = props => {
 
 const resetForms = () => {
   setHideModal(true);
-  setProductCategory('bottle');
+  setProductCategory('togo');
   setProductName('');
   setProductThumbnail('');
   setProductPrice(0);
+  setProductOrigin('');
+  setProductTasteNote('');
+  setProductStock(0);
 }
 
   const handleSubmit = e => {
@@ -52,7 +58,10 @@ const resetForms = () => {
         productCategory,
         productName,
         productThumbnail,
-        productPrice
+        productPrice,
+        productOrigin,
+        productTasteNote,
+        productStock
       })
     );
     resetForms();
@@ -81,7 +90,7 @@ const resetForms = () => {
             </h2>
             </div>
             <div className="column">
-            <CloseButton className="modalbtn" onClick={() => toggleModal()}>
+            <CloseButton onClick={() => toggleModal()}>
               X
             </CloseButton>
             </div>
@@ -89,11 +98,11 @@ const resetForms = () => {
             <FormSelect
               label="Category"
               options={[{
-                value: "bottle",
-                name: "Bottle"
+                value: "togo",
+                name: "To-go"
               }, {
-                value: "freshblew",
-                name: "Fresh Blew"
+                value: "crafted",
+                name: "Handcrafted"
               }]}
               handleChange={e => setProductCategory(e.target.value)}
             />
@@ -122,6 +131,31 @@ const resetForms = () => {
               handleChange={e => setProductPrice(e.target.value)}
             />
 
+            <FormInput
+              label="Origin"
+              type="text"
+              value={productOrigin}
+              handleChange={e => setProductOrigin(e.target.value)}
+            />
+
+            <FormInput
+              label="Taste Note"
+              type="text"
+              value={productTasteNote}
+              handleChange={e => setProductTasteNote(e.target.value)}
+            />
+
+            <FormInput
+              label="Stock"
+              type="number"
+              min="0"
+              max="10000"
+              step="1"
+              value={productStock}
+              handleChange={e => setProductStock(e.target.value)}
+            />
+
+
             <Button type="submit">
               Add product
             </Button>
@@ -149,19 +183,31 @@ const resetForms = () => {
                                   productName,
                                   productThumbnail,
                                   productPrice,
+                                  productOrigin,
+                                  productTasteNote,
+                                  productStock,
                                   documentID
                                 } = product;
                                 
                                 return (
                                   <tr>
-                                    <td>
+                                    <td className="thumb">
                                     <img src={productThumbnail} alt="" />
                                     </td>
                                     <td>
-                                      {productName}
-                                    </td>
-                                    <td>
-                                      ฿{productPrice}
+                                      <p>{productName}</p>
+                                      </td>
+                                      <td>
+                                      <p>฿{productPrice}</p>
+                                      </td>
+                                      <td>
+                                      <p>{productOrigin}</p>
+                                      </td>
+                                      <td>
+                                      <p>{productTasteNote}</p>
+                                      </td>
+                                      <td>
+                                      <p>{productStock}</p>
                                     </td>
                                     <td>
                                       <Button onClick={()=> dispatch(deleteProductStart(documentID))}>

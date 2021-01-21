@@ -23,7 +23,7 @@ const AdminLayout = props => {
             <ul>
               <li>
                 <Link to="/admin">
-                  Home
+                 Admin Portal - Home
                 </Link>
               </li>
               <li>

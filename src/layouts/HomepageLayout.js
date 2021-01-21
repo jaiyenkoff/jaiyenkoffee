@@ -6,7 +6,9 @@ const HomepageLayout = props => {
   return (
     <div className="homeLayout">
     <div className="fullHeight">
+    <div className="hero">
       <Header {...props} />
+      </div>
       <div className="content">
       {props.children}
       </div>

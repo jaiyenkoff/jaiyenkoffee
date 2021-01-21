@@ -8,7 +8,10 @@ export function* addProduct({ payload: {
     productCategory,
     productName,
     productThumbnail,
-    productPrice
+    productPrice,
+    productOrigin,
+    productTasteNote,
+    productStock
 }}) {
     try {
         const timestamp = new Date();
@@ -17,6 +20,9 @@ export function* addProduct({ payload: {
             productName,
             productThumbnail,
             productPrice,
+            productOrigin,
+            productTasteNote,
+            productStock,
             productAdminUID: auth.currentUser.uid,
             createdDate: timestamp
         }); 
@@ -35,9 +41,9 @@ export function* onAddProductStart() {
     yield takeLatest(productsTypes.ADD_NEW_PRODUCT_START, addProduct)
 } 
 
-export function* fetchProducts() { 
+export function* fetchProducts({ payload }) { 
     try {
-        const products = yield handleFetchProducts();
+        const products = yield handleFetchProducts( payload );
         yield put(
             setProducts(products)
         ) ;

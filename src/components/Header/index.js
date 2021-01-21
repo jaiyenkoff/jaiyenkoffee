@@ -4,7 +4,7 @@ import { signOutUserStart } from './../../redux/User/user.actions'
 import './styles.scss';
 import { Link } from 'react-router-dom';
 
-import Logo from './../../assets/jaiyen-logo-thmb.png';
+import Logo from './../../assets/Jaiyen-logo.png';
 
 const mapState = ({ user }) => ({
    currentUser: user.currentUser
@@ -26,6 +26,17 @@ const signOut = () => {
         <img src={Logo} alt="" />
         </Link>   
      </div>
+
+      <nav>
+         <ul>
+            <li>
+               <Link to="/search">
+                  Search
+               </Link>
+            </li>
+         </ul>
+      </nav>
+
      <div className="callToActions">
          {currentUser &&(
         <ul>
