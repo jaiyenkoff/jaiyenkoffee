@@ -2,12 +2,12 @@
 import React from 'react';
 import ProductResults from '../../components/ProductResults';
 
-const Search = ({ }) => {
+const Store = ({ }) => {
     return (
-        <div className="searchPage">
+        <div className="storePage">
             <ProductResults />
         </div>
     );
 };
 
-export default Search;
+export default Store;

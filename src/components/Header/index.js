@@ -27,21 +27,11 @@ const signOut = () => {
         </Link>   
      </div>
 
-      <nav>
-         <ul>
-            <li>
-               <Link to="/search">
-                  Search
-               </Link>
-            </li>
-         </ul>
-      </nav>
-
      <div className="callToActions">
          {currentUser &&(
         <ul>
                          <li>
-                 <Link to="/product">
+                 <Link to="/store">
                     PRODUCT
                  </Link>
               </li>   

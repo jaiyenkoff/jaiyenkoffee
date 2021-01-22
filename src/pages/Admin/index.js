@@ -6,7 +6,7 @@ import FormInput from './../../components/forms/FormInput';
 import FormSelect from './../../components/forms/FormSelect';
 import Button from './../../components/forms/Button';
 import CloseButton from './../../components/forms/CloseButton';
-
+import LoadMore from './../../components/LoadMore';
 
 
 import './styles.scss';
@@ -26,6 +26,8 @@ const Admin = props => {
   const [productTasteNote, setProductTasteNote] = useState('');
   const [productOrigin, setProductOrigin] = useState('');
   const [productStock, setProductStock] = useState(0);
+
+  const { data, queryDoc, isLastPage } = products; 
 
   useEffect(() => {
     dispatch(
@@ -65,6 +67,19 @@ const resetForms = () => {
       })
     );
     resetForms();
+  };
+
+  const handleLoadmore = () => {
+    dispatch(
+      fetchProductsStart({
+        startAfterDoc: queryDoc, 
+        persistProducts: data
+      })
+    ); 
+  }
+
+  const configLoadMore = {
+    onLoadMoreEvt: handleLoadmore,
   };
 
   return (
@@ -178,7 +193,7 @@ const resetForms = () => {
                     <td>
                     <table className="results" border="0" cellPadding="10" cellSpacing="0">
                         <tbody>
-                              {products.map((product, index) => {
+                              {(Array.isArray(data) && data.length > 0) && data.map((product, index) => {
                                 const {
                                   productName,
                                   productThumbnail,
@@ -223,7 +238,17 @@ const resetForms = () => {
                   </tr>
                 </tbody>
               </table>
-
+              <table border="0" cellPadding="10px" cellSpacing="0">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                  {!isLastPage && (
+                                  <LoadMore {...configLoadMore} />
+                                  )}
+                                  </td>
+                                </tr>
+                              </tbody>
+                        </table>
     </div>
     </div>
   );

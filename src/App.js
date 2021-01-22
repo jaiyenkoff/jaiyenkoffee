@@ -28,7 +28,9 @@ import Login from './pages/Login';
 import Recovery from './pages/Recovery';
 import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
-import Search from './pages/Search'
+import Store from './pages/Store';
+import ProductDetails from './pages/ProductDetails';
+
 import './default.scss';
 
 
@@ -50,16 +52,22 @@ const App = props => {
           <Homepage />
           </HomepageLayout>
         )} />
-        <Route exact path="/search" render={() => (
+        <Route exact path="/store" render={() => (
           <MainLayout>
-            <Search /> 
+            <Store /> 
           </MainLayout>
         )} />
-                <Route path="/search/:filterType" render={() => (
+                <Route path="/store/:filterType" render={() => (
           <MainLayout>
-            <Search /> 
+            <Store /> 
           </MainLayout>
         )} />
+        <Route path="/product/:productID" render={() => (
+          <MainLayout>
+            <ProductDetails /> 
+          </MainLayout>
+        )} />
+
         <Route path="/registration" render={() =>   (
           <MainLayout>
           <Registration />

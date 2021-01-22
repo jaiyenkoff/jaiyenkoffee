@@ -3,15 +3,17 @@ import Header from './../components/Header';
 import Footer from './../components/Footer';
 
 const MainLayout = props => {
-    return (
+    return (   
+        <div className="mainLayout">
         <div className="fullheight">
-            <Header {...props} />
-            <div className="main">
+        <div className="hero2">
+        <Header {...props} />
+        </div>
+            <div className="content">
                 {props.children}
             </div>
-            <div className="footer">
+        </div>
             <Footer />
-            </div>
         </div>
     );
 };
