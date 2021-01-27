@@ -57,7 +57,7 @@ export function* onDeleteProductStart() {
     yield takeLatest(productsTypes.DELETE_PRODUCT_START, deleteProduct)
 }
 
-export function* fetchproduct({ payload }) {
+export function* fetchProduct({ payload }) {
     try {
        const product = yield handleFetchProduct(payload); 
        yield put(
@@ -69,7 +69,7 @@ export function* fetchproduct({ payload }) {
 }
 
 export function* onFetchProductStart() {
-    yield takeLatest(productsTypes.FETCH_PRODUCT_START, fetchproduct)
+    yield takeLatest(productsTypes.FETCH_PRODUCT_START, fetchProduct)
 }
 
 

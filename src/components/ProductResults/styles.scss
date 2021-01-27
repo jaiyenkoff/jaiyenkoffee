@@ -20,6 +20,7 @@
     margin: 0 auto 2rem;
     padding: 0 10px;
 
+
     .thumb {
         display: block;
         width: 100%;
@@ -74,8 +75,12 @@
                     font-weight: 400;
                 }
 
-                .addToCart {
+                .addToBag {
                     margin: 2rem 0 0 0;
+                    
+                    .icon {
+                        margin-left: 1rem;
+                    }
                 }
 
                 .lineman {
@@ -93,6 +98,10 @@
                         -moz-transition: all .4s ease-in-out;
                         transition: all .4s ease-in-out;
                       }
+
+                      .icon {
+                        margin-left: 1rem;
+                    }
                 }
 
             }

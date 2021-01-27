@@ -30,6 +30,9 @@ import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
 import Store from './pages/Store';
 import ProductDetails from './pages/ProductDetails';
+import Cart from './pages/Cart';
+import Payment from './pages/Payment';
+
 
 import './default.scss';
 
@@ -67,7 +70,16 @@ const App = props => {
             <ProductDetails /> 
           </MainLayout>
         )} />
-
+        <Route path="/bag" render={() => (
+          <MainLayout>
+            <Cart /> 
+          </MainLayout>
+        )} />
+                <Route path="/payment" render={() => (
+          <MainLayout>
+            <Payment /> 
+          </MainLayout>
+        )} />
         <Route path="/registration" render={() =>   (
           <MainLayout>
           <Registration />

@@ -1,20 +1,43 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import  { useDispatch }  from 'react-redux';
+import { addProduct } from './../../../redux/Cart/cart.actions';
+
+// button
 import Button from './../../forms/Button';
 
-const Product = ({ 
-    documentID,
-    productThumbnail, 
-    productName, 
-    productPrice
-}) => {
+// icon
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+
+library.add(fab, faExternalLinkAlt)
+
+const Product = (product) => {
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const { 
+        documentID,
+        productThumbnail, 
+        productName, 
+        productPrice
+    } = product;
     if (!documentID || !productThumbnail || !productName ||
         typeof productPrice === 'undefined') return null;
         
-    const configAddToCartBtn = {
+    const configAddToBagBtn = {
         type: 'button'
     };
 
+    const handleAddToCart = (product) => {
+        if (!product) return;
+        dispatch(
+            addProduct(product)
+        );
+        history.push('/bag')
+    };
+    
     const configLinemanBtn = {
         type: 'button'
     };
@@ -30,7 +53,7 @@ const Product = ({
                     <li>
                     <span className="name">
                     <Link to={`/product/${documentID}`}>
-                    {productName}
+                        {productName}
                     </Link>
                     </span>
                     </li>
@@ -40,9 +63,9 @@ const Product = ({
                     </span>
                     </li>
                     <li>
-                        <div className="addToCart">
-                        <Button {...configAddToCartBtn}>
-                            Add to cart
+                        <div className="addToBag">
+                        <Button {...configAddToBagBtn} onClick={() => handleAddToCart(product)}>
+                            Add to bag
                         </Button>
                         </div>
                     </li>
@@ -50,8 +73,11 @@ const Product = ({
                         <div className="lineman">
                         <Button {...configLinemanBtn}>
                            <a href="https://www.wongnai.com/delivery/businesses/715820IL/order"> 
-                           Shop with LINEMAN
+                           Order with LINEMAN
                            </a>
+                           <span className="icon">
+                            <FontAwesomeIcon icon="external-link-alt" />
+                            </span>
                         </Button>
                         </div>
                     </li>

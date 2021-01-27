@@ -69,7 +69,8 @@ export const handleFetchProduct = productID => {
         firestore
         .collection('products')
         .doc(productID)
-        .get(snapshot => {
+        .get()
+        .then(snapshot => {
             if (snapshot.exists) {
                 resolve(
                     snapshot.data()

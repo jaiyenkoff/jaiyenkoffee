@@ -7,6 +7,7 @@ import FormSelect from './../../components/forms/FormSelect';
 import Button from './../../components/forms/Button';
 import CloseButton from './../../components/forms/CloseButton';
 import LoadMore from './../../components/LoadMore';
+import CKEditor from 'ckeditor4-react';
 
 
 import './styles.scss';
@@ -26,6 +27,7 @@ const Admin = props => {
   const [productTasteNote, setProductTasteNote] = useState('');
   const [productOrigin, setProductOrigin] = useState('');
   const [productStock, setProductStock] = useState(0);
+  const [productDesc, setProductDesc] = useState('');
 
   const { data, queryDoc, isLastPage } = products; 
 
@@ -51,6 +53,7 @@ const resetForms = () => {
   setProductOrigin('');
   setProductTasteNote('');
   setProductStock(0);
+  setProductDesc('');
 }
 
   const handleSubmit = e => {
@@ -63,7 +66,8 @@ const resetForms = () => {
         productPrice,
         productOrigin,
         productTasteNote,
-        productStock
+        productStock,
+        productDesc
       })
     );
     resetForms();
@@ -159,6 +163,12 @@ const resetForms = () => {
               value={productTasteNote}
               handleChange={e => setProductTasteNote(e.target.value)}
             />
+
+              <CKEditor
+                onChange={evt => setProductDesc(evt.editor.getData())}
+              />
+
+              <br />
 
             <FormInput
               label="Stock"

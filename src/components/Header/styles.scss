@@ -76,6 +76,25 @@
         -webkit-transform: translateY(-50%);
         -moz-transform: translateY(-50%);
         transform: translateY(-50%);
+
+        .icon {
+          margin-right: 1rem;
+          margin-left: 1rem;
+          cursor: pointer;
+
+          &:focus {
+            color: #DFCDB1;
+            text-decoration: underline;
+          }
+          &:hover {
+            color: #DFCDB1;
+            text-decoration: none;
+          }
+          &:after {
+            color: #DFCDB1;
+            text-decoration: underline;
+          }
+      }
   
         i {
           display: none;
